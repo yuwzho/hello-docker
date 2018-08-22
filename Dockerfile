@@ -1,4 +1,4 @@
-ARG name = any
+ARG name=any
 FROM node:6.9.2
 EXPOSE 8080
 RUN echo "hell $name"
