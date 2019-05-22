@@ -11,7 +11,7 @@ var handleRequest = function(request, response) {
       res.on('data', (chunk) => rawData += chunk);
       res.on('end', () => {
         try {
-          response.end("this is get from backend: " + rawData);
+          response.end("this is got from backend: " + rawData);
         } catch (e) {
           response.end(e.message);
         }
