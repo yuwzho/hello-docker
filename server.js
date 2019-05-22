@@ -1,9 +1,24 @@
 var http = require('http');
 
 var handleRequest = function(request, response) {
-  console.log('Received request for URL: ' + request.url);
-  response.writeHead(200);
-  response.end('Hello World!!!');
+  http.get('http://127.0.0.1:8080', (res) => {
+    var code = res.statusCode;
+    response.writeHead(code)
+    if (code !== 200) {
+      response.end("error")
+    } else {
+      var rawData = '';
+      res.on('data', (chunk) => rawData += chunk);
+      res.on('end', () => {
+        try {
+          response.end("this is from backend: " + rawData);
+        } catch (e) {
+          response.end(e.message);
+        }
+      });
+    }
+
+  })
 };
 var www = http.createServer(handleRequest);
-www.listen(8080);
+www.listen(80);
