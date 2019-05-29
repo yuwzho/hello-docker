@@ -1,7 +1,7 @@
 var http = require('http');
 
 var handleRequest = function(request, response) {
-  http.get('http://hello-docker:8080', (res) => {
+  http.get(process.env['backend_host'], (res) => {
     var code = res.statusCode;
     response.writeHead(code)
     if (code !== 200) {
