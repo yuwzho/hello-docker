@@ -7,8 +7,8 @@ var handleRequest = function(request, response) {
 };
 
 var credentials = {
-  key: Buffer.from(process.env['tls.key'], 'base64'),
-  cert: Buffer.from(process.env['tls.crt'], 'base64')
+  key: process.env['tls.key'],
+  cert: process.env['tls.crt']
 };
 
 var www = https.createServer(credentials, handleRequest);
