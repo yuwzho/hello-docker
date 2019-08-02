@@ -1,9 +1,15 @@
-var http = require('http');
+var https = require('https');
 
 var handleRequest = function(request, response) {
-  console.log('Received request for URL: ' + json.stringify(request));
+  console.log('Received request for URL: ' + request.url);
   response.writeHead(200);
   response.end('Hello World!!!');
 };
-var www = http.createServer(handleRequest);
-www.listen(8080);
+
+var credentials = {
+  key: Buffer.from(process.env['tls.key'], 'base64'),
+  cert: Buffer.from(process.env['tls.crt'], 'base64')
+};
+
+var www = https.createServer(credentials, handleRequest);
+www.listen(443);
