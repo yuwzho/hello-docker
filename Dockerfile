@@ -1,4 +1,3 @@
-FROM node:6.9.2
-EXPOSE 8080
-COPY server.js .
-CMD node server.js
+FROM debian
+CMD apt-get update
+CMD apt-get install fio -y
